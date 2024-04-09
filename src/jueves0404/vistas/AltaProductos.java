@@ -7,6 +7,7 @@ package jueves0404.vistas;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -17,11 +18,11 @@ import jueves0404.entidades.Producto;
  * @author Usuario
  */
 public class AltaProductos extends javax.swing.JInternalFrame {
-private HashSet<Producto> productos;
+private TreeSet<Producto> productos;
     /**
      * Creates new form AltaProductos
      */
-    public AltaProductos(HashSet<Producto> productos) {
+    public AltaProductos(TreeSet<Producto> productos) {
         initComponents();
         this.productos=productos;
     }
@@ -47,6 +48,9 @@ private HashSet<Producto> productos;
         jLabel6 = new javax.swing.JLabel();
         jcCategorias = new javax.swing.JComboBox<>();
         jbGuardar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -58,9 +62,9 @@ private HashSet<Producto> productos;
 
         jLabel2.setText("Código:");
 
-        jtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtCodigoFocusLost(evt);
+        jtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCodigoKeyTyped(evt);
             }
         });
 
@@ -68,17 +72,17 @@ private HashSet<Producto> productos;
 
         jLabel4.setText("Precio:");
 
-        jtPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtPrecioFocusLost(evt);
+        jtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtPrecioKeyTyped(evt);
             }
         });
 
         jLabel5.setText("Stock:");
 
-        jtStock.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtStockFocusLost(evt);
+        jtStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtStockKeyTyped(evt);
             }
         });
 
@@ -92,6 +96,17 @@ private HashSet<Producto> productos;
                 jbGuardarActionPerformed(evt);
             }
         });
+        jbGuardar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jbGuardarKeyTyped(evt);
+            }
+        });
+
+        jLabel7.setText("Solo digitos");
+
+        jLabel10.setText("Solo digitos");
+
+        jLabel11.setText("Solo digitos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,34 +114,36 @@ private HashSet<Producto> productos;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(13, 13, 13)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel1)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jtStock, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                                            .addComponent(jtPrecio, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(259, 259, 259)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7))
+                                    .addComponent(jLabel1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                    .addComponent(jtPrecio)
+                                    .addComponent(jtStock))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11))))))
+                .addContainerGap(94, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbGuardar)
@@ -139,7 +156,8 @@ private HashSet<Producto> productos;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -147,18 +165,20 @@ private HashSet<Producto> productos;
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jcCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbGuardar)
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addGap(0, 48, Short.MAX_VALUE))
         );
 
         pack();
@@ -178,6 +198,7 @@ private HashSet<Producto> productos;
             JOptionPane.showMessageDialog(this, "Hay campos sin completar");
             return;
         }
+        
         
         codigo=Integer.parseInt(jtCodigo.getText());
         descripcion=jtDescripcion.getText();
@@ -200,48 +221,39 @@ private HashSet<Producto> productos;
         
     }//GEN-LAST:event_jbGuardarActionPerformed
 
-    private void jtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtCodigoFocusLost
-        // TODO add your handling code here:
-        Pattern p=Pattern.compile("\\d{1,4}");
-        Matcher m=p.matcher(jtCodigo.getText());
-        if(!m.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
-            jtCodigo.requestFocus();
-            return;
-        }
-    }//GEN-LAST:event_jtCodigoFocusLost
+    private void jbGuardarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbGuardarKeyTyped
+           // TODO add your handling code here:
+    }//GEN-LAST:event_jbGuardarKeyTyped
 
-    private void jtPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtPrecioFocusLost
-        // TODO add your handling code here:
-        Pattern p=Pattern.compile("^[+]?[0-9]*\\.?[0-9]+(?:[eE][-+]?[0-9]+)?$");
-        Matcher m=p.matcher(jtPrecio.getText());
-        if(!m.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
-            jtPrecio.requestFocus();
-            return;
-        }
-    }//GEN-LAST:event_jtPrecioFocusLost
+    private void jtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCodigoKeyTyped
+      if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }    
+    }//GEN-LAST:event_jtCodigoKeyTyped
 
-    private void jtStockFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtStockFocusLost
-        // TODO add your handling code here:
-        
-       Pattern p=Pattern.compile("\\d{1,4}");
-        Matcher m=p.matcher(jtStock.getText());
-        if(!m.matches()){
-            JOptionPane.showMessageDialog(this, "Ustede debe ing. un nro");
-            jtStock.requestFocus();
-            return;
-        }
-    }//GEN-LAST:event_jtStockFocusLost
+    private void jtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioKeyTyped
+        if(!Character.isDigit(evt.getKeyChar()) && !(evt.getKeyChar() == '.')){
+            evt.consume();
+        }  
+    }//GEN-LAST:event_jtPrecioKeyTyped
+
+    private void jtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtStockKeyTyped
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }  // TODO add your handling code here:
+    }//GEN-LAST:event_jtStockKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JComboBox<String> jcCategorias;
     private javax.swing.JTextField jtCodigo;

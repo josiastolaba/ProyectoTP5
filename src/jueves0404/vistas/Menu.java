@@ -3,11 +3,13 @@ package jueves0404.vistas;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.TreeSet;
+import jueves0404.entidades.Comparador;
 import jueves0404.entidades.Producto;
 
 
 public class Menu extends javax.swing.JFrame {
-private HashSet<Producto> productos=new HashSet<>();
+private TreeSet<Producto> productos=new TreeSet<>(Comparador);
    
     public Menu() {
         initComponents();
