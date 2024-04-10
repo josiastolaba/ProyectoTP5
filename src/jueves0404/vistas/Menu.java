@@ -1,13 +1,18 @@
 
 package jueves0404.vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.TreeSet;
+import javax.swing.ImageIcon;
 import jueves0404.entidades.Comparador;
 import jueves0404.entidades.Producto;
 
 
 public class Menu extends javax.swing.JFrame {
-private TreeSet<Producto> listaProductos=new TreeSet<>(new Comparador());
+private TreeSet<Producto> productos=new TreeSet<>(new Comparador());
    
     public Menu() {
         initComponents();
@@ -22,7 +27,13 @@ private TreeSet<Producto> listaProductos=new TreeSet<>(new Comparador());
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"));
+        Image image = icon.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jmProducto = new javax.swing.JMenu();
         jmiAlta = new javax.swing.JMenuItem();
@@ -84,9 +95,10 @@ private TreeSet<Producto> listaProductos=new TreeSet<>(new Comparador());
 
     private void jmiAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAltaActionPerformed
         // TODO add your handling code here:}
+        
         escritorio.removeAll();
         escritorio.repaint();
-        AltaProductos ap=new AltaProductos(listaProductos);
+        AltaProductos ap=new AltaProductos(productos);
         ap.setVisible(true);
         ap.setLocation(200, 100);
         
@@ -99,9 +111,10 @@ private TreeSet<Producto> listaProductos=new TreeSet<>(new Comparador());
 
     private void jmiConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultasActionPerformed
         // TODO add your handling code here:
+        
         escritorio.removeAll();
         escritorio.repaint();
-        ConsultaProducto cp=new ConsultaProducto(listaProductos);
+        ConsultaProducto cp=new ConsultaProducto(productos);
         cp.setVisible(true);
         escritorio.add(cp);
         escritorio.moveToFront(cp);
