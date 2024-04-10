@@ -1,15 +1,13 @@
 
 package jueves0404.vistas;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.TreeSet;
 import jueves0404.entidades.Comparador;
 import jueves0404.entidades.Producto;
 
 
 public class Menu extends javax.swing.JFrame {
-private TreeSet<Producto> productos=new TreeSet<>(Comparador);
+private TreeSet<Producto> listaProductos=new TreeSet<>(new Comparador());
    
     public Menu() {
         initComponents();
@@ -88,7 +86,7 @@ private TreeSet<Producto> productos=new TreeSet<>(Comparador);
         // TODO add your handling code here:}
         escritorio.removeAll();
         escritorio.repaint();
-        AltaProductos ap=new AltaProductos(productos);
+        AltaProductos ap=new AltaProductos(listaProductos);
         ap.setVisible(true);
         ap.setLocation(200, 100);
         
@@ -103,7 +101,7 @@ private TreeSet<Producto> productos=new TreeSet<>(Comparador);
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        ConsultaProducto cp=new ConsultaProducto(productos);
+        ConsultaProducto cp=new ConsultaProducto(listaProductos);
         cp.setVisible(true);
         escritorio.add(cp);
         escritorio.moveToFront(cp);
