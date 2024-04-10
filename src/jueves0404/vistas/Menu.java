@@ -27,7 +27,7 @@ private TreeSet<Producto> productos=new TreeSet<>(new Comparador());
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"));
         Image image = icon.getImage();
         escritorio = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
