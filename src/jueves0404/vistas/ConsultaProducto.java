@@ -42,7 +42,7 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
         jtCodigo = new javax.swing.JTextField();
         jbBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabla = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -64,7 +64,7 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -74,8 +74,23 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
             new String [] {
                 "Codigo", "Descripción", "Precio", "Stock", "Categoria"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTabla);
+        if (jTabla.getColumnModel().getColumnCount() > 0) {
+            jTabla.getColumnModel().getColumn(0).setHeaderValue("Codigo");
+            jTabla.getColumnModel().getColumn(1).setHeaderValue("Descripción");
+            jTabla.getColumnModel().getColumn(2).setHeaderValue("Precio");
+            jTabla.getColumnModel().getColumn(3).setHeaderValue("Stock");
+            jTabla.getColumnModel().getColumn(4).setHeaderValue("Categoria");
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,7 +150,8 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
              /*   jtDescripcion.setText(prod.getDescripcion());
                 jtPrecio.setText(prod.getPrecio()+"");
                 jtStock.setText(prod.getStock()+"");
-                jtCategoria.setText(prod.getCategoria());*/
+                jtCategoria.setText(prod.getCategoria());
+             jTabla.s(prod.getCodigo());*/
             }
         }
         
@@ -157,7 +173,7 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTabla;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JTextField jtCodigo;
     // End of variables declaration//GEN-END:variables
