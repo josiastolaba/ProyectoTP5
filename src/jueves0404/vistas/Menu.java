@@ -100,7 +100,7 @@ private TreeSet<Producto> productos=new TreeSet<>(new Comparador());
         escritorio.repaint();
         AltaProductos ap=new AltaProductos(productos);
         ap.setVisible(true);
-        ap.setLocation(200, 100);
+        //ap.setLocation(200, 100);
         
        
         escritorio.add(ap);
