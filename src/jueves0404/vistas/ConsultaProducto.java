@@ -1,27 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jueves0404.vistas;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.TreeSet;
-import java.util.function.Consumer;
+import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import jueves0404.entidades.Producto;
 
-/**
- *
- * @author 54265
- */
+
 public class ConsultaProducto extends javax.swing.JInternalFrame {
+    
     private TreeSet<Producto> productos;
     /**
      * Creates new form ConsultaProducto
+     * @param productos
      */
     public ConsultaProducto(TreeSet<Producto> productos) {
         this.productos = productos;
@@ -42,7 +35,7 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
         jtCodigo = new javax.swing.JTextField();
         jbBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTabla1 = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -64,18 +57,15 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Codigo", "Descripción", "Precio", "Stock", "Categoria"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtTabla1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,8 +107,9 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-        //Rescatar el código
+        
+        
+                
          Pattern p=Pattern.compile("\\d{1,4}");
         Matcher m=p.matcher(jtCodigo.getText());
         if(!m.matches()){
@@ -132,10 +123,16 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
         
             if(prod.getCodigo()==codigo){
                 bandera=true;
-             /*   jtDescripcion.setText(prod.getDescripcion());
-                jtPrecio.setText(prod.getPrecio()+"");
-                jtStock.setText(prod.getStock()+"");
-                jtCategoria.setText(prod.getCategoria());*/
+                
+                DefaultTableModel model = (DefaultTableModel) jtTabla1.getModel();
+                Vector<String> row1 = new Vector<>();
+                
+                row1.add(String.valueOf(prod.getCodigo()));
+                row1.add(prod.getDescripcion());
+                row1.add(String.valueOf(prod.getPrecio()));
+                row1.add(String.valueOf(prod.getStock()));
+                row1.add(prod.getCategoria());
+                model.addRow(row1);   
             }
         }
         
@@ -157,8 +154,8 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JTextField jtCodigo;
+    private javax.swing.JTable jtTabla1;
     // End of variables declaration//GEN-END:variables
 }

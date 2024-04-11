@@ -1,26 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package jueves0404.vistas;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import jueves0404.entidades.Producto;
 
-/**
- *
- * @author Usuario
- */
+
 public class AltaProductos extends javax.swing.JInternalFrame {
-private TreeSet<Producto> productos;
+    
+    private TreeSet<Producto> productos;
     /**
      * Creates new form AltaProductos
+     * @param productos
      */
     public AltaProductos(TreeSet<Producto> productos) {
         initComponents();

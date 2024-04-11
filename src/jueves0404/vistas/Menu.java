@@ -3,8 +3,6 @@ package jueves0404.vistas;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.TreeSet;
 import javax.swing.ImageIcon;
 import jueves0404.entidades.Comparador;
@@ -12,7 +10,8 @@ import jueves0404.entidades.Producto;
 
 
 public class Menu extends javax.swing.JFrame {
-private TreeSet<Producto> productos=new TreeSet<>(new Comparador());
+    
+    private TreeSet<Producto> productos = new TreeSet<>(new Comparador());
    
     public Menu() {
         initComponents();
@@ -42,15 +41,17 @@ private TreeSet<Producto> productos=new TreeSet<>(new Comparador());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        escritorio.setPreferredSize(new java.awt.Dimension(665, 460));
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 665, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jmProducto.setText("Productos");
@@ -82,11 +83,11 @@ private TreeSet<Producto> productos=new TreeSet<>(new Comparador());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
         );
 
         pack();
@@ -114,7 +115,7 @@ private TreeSet<Producto> productos=new TreeSet<>(new Comparador());
         
         escritorio.removeAll();
         escritorio.repaint();
-        ConsultaProducto cp=new ConsultaProducto(productos);
+        ConsultaProducto cp=new ConsultaProducto(productos); //instancia de consulta
         cp.setVisible(true);
         escritorio.add(cp);
         escritorio.moveToFront(cp);
