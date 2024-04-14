@@ -37,11 +37,14 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
         jtTabla1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jlCategorias = new javax.swing.JLabel();
+        jbBuscar2 = new javax.swing.JButton();
+        jcCategorias2 = new javax.swing.JComboBox<>();
 
         setClosable(true);
 
         jLabel2.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
-        jLabel2.setText("Codigo");
+        jLabel2.setText("Código");
 
         jtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -90,21 +93,44 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
+        jlCategorias.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        jlCategorias.setText("Categorias");
+
+        jbBuscar2.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        jbBuscar2.setText("Buscar");
+        jbBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscar2ActionPerformed(evt);
+            }
+        });
+
+        jcCategorias2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comestible", "Limpieza", "Perfumeria" }));
+        jcCategorias2.setSelectedItem(null);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbBuscar)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(335, 335, 335))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jbBuscar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                            .addComponent(jlCategorias)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jcCategorias2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jbBuscar2))))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -112,7 +138,6 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -120,20 +145,21 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbBuscar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbBuscar)
+                            .addComponent(jlCategorias)
+                            .addComponent(jcCategorias2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbBuscar2))
                         .addGap(1, 1, 1)))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        
-        
-                
+             
          Pattern p=Pattern.compile("\\d{1,4}");
         Matcher m=p.matcher(jtCodigo.getText());
         if(!m.matches()){
@@ -173,6 +199,29 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
         }           
     }//GEN-LAST:event_jtCodigoKeyTyped
 
+    private void jbBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscar2ActionPerformed
+        // TODO add your handling code here:
+         DefaultTableModel model = (DefaultTableModel) jtTabla1.getModel();
+        
+        String categoria2 = jcCategorias2.getSelectedItem()+"";
+        System.out.println("la categoria seleccionada es: "+categoria2);
+        for(Producto prod:productos){
+            if(prod.getCategoria().equals(categoria2)){
+                //bandera=true;
+                System.out.println("entro aca");
+                Vector<String> row1 = new Vector<>();
+                
+                row1.add(String.valueOf(prod.getCodigo()));
+                row1.add(prod.getDescripcion());
+                row1.add(prod.getPrecio()+""); // se convierte en String onc las comillas
+                row1.add(String.valueOf(prod.getStock()));
+                row1.add(prod.getCategoria());
+                model.addRow(row1);   
+                
+            }
+        }
+    }//GEN-LAST:event_jbBuscar2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -180,6 +229,9 @@ public class ConsultaProducto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbBuscar2;
+    private javax.swing.JComboBox<String> jcCategorias2;
+    private javax.swing.JLabel jlCategorias;
     private javax.swing.JTextField jtCodigo;
     private javax.swing.JTable jtTabla1;
     // End of variables declaration//GEN-END:variables
